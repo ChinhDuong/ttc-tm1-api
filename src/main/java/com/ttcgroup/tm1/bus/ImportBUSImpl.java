@@ -95,7 +95,7 @@ public class ImportBUSImpl implements IImportBUS {
     }
 
 
-    public void ImportTM1() {
+    public void ImportTM1(String pYear) {
         String sqlText = "SELECT TABLENAME, CUBENAME, PROCESSNAME FROM TM1_TABLEIMPORT WHERE CUBENAME != 'Z'";
         CachedRowSetImpl tblImport = fbDAO.ExecuteQueySQLText(sqlText);
         try {
@@ -105,6 +105,10 @@ public class ImportBUSImpl implements IImportBUS {
 
                 CachedRowSetImpl data = fbDAO.ExecuteQueySQLText(sqlText);
 
+                String condition = "Nam: " + pYear;
+                condition = condition + " & DM_PhienBan: ThucHien";
+                String[] params = {condition, cubeName};
+                tm1DAO.RunProcess("ClearActualData", params);
                 tm1DAO.ImportIntoCube(data,cubeName);
             }
             //serv.disconnect();

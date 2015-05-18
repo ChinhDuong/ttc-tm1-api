@@ -42,6 +42,8 @@ public class TM1DAOImpl implements ITM1DAO {
             throw new Exception("Cube is error.{Cube: " + cubeName);
 
         while (crs.next()) {// Scan input data
+
+            // input data
             TM1Val elemTitles;
             // get number of dimension
             elemTitles = TM1Val.makeArrayVal(cube.getDimensionCount().getInt());
@@ -59,27 +61,9 @@ public class TM1DAOImpl implements ITM1DAO {
                     isText = true;
                 elemTitles.addToArray(element);
             }
-            // xoa du lieu
-            if ( isClear){
-                String condition = "Nam: " +crs.getString("Nam");
-
-                try{
-                    int colIdx = crs.findColumn("DM_PhienBan");
-                    condition = condition + " & DM_PhienBan: " + crs.getString(colIdx);
-                }
-                catch (Exception ex)
-                {
-
-                }
-
-                // clear data in cube
-                String[] params = {condition,cubeName};
-                RunProcess("ClearActualData",params);
-                isClear = false;
-            }
 
 
-            TM1Val ret = TM1Val.TM1Val_NULL;
+            TM1Val ret;//= TM1Val.TM1Val_NULL;
 
             if (isText)
                 ret = cube.setCellValue(elemTitles, new TM1Val(crs.getString("TEXT")));
@@ -120,7 +104,7 @@ public class TM1DAOImpl implements ITM1DAO {
                     isText = true;
                 elemTitles.addToArray(element);
             }
-            TM1Val ret = TM1Val.TM1Val_NULL;
+            TM1Val ret;//= TM1Val.TM1Val_NULL;
 
             if (isText)
                 ret = cube.setCellValue(elemTitles, new TM1Val(crs.getString("TEXT")));
@@ -147,8 +131,9 @@ public class TM1DAOImpl implements ITM1DAO {
             throw new Exception("Process '" + procName + "' is error " + tm1_proc.getErrorMessage());
 
         TM1Val arr = TM1Val.makeArrayVal(params.length);
-        for (int i=0; i <params.length;++i){
-            arr.addToArray(new TM1Val(params[i]));
+
+        for (String p : params) {
+            arr.addToArray(new TM1Val(p));
         }
 
         tm1_proc.check();
@@ -162,8 +147,8 @@ public class TM1DAOImpl implements ITM1DAO {
     {
         TM1Bean tm1_bean = new TM1Bean();
         tm1_bean.setAdminHost(adminHost);
-        TM1Server serv = tm1_bean.openConnection(serverName, userName, password);
-        return serv;
+        return tm1_bean.openConnection(serverName, userName, password);
+        //return serv;
     }
 
     public void ImportUsers(List<UserInfo> users) throws Exception {
@@ -245,8 +230,4 @@ public class TM1DAOImpl implements ITM1DAO {
                     + userName + "." + result.getErrorMessage());
 
     }
-
-
-
-
 }

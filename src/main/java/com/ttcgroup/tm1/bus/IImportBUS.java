@@ -23,7 +23,7 @@ public interface IImportBUS {
 
     void CallAll(String pYear);
 
-    void ImportTM1();
+    void ImportTM1(String pYear);
 
     void ImportUsers(String fileName);
 
