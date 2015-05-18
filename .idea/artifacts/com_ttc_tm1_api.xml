@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="com.ttc.tm1.api">
+    <output-path>$PROJECT_DIR$/out/artifacts/com_ttc_tm1_api</output-path>
+    <root id="archive" name="com.ttc.tm1.api.jar">
+      <element id="file-copy" path="$PROJECT_DIR$/lib/TM1JavaApi.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/jaybird-full-2.2.7.jar" />
+      <element id="module-output" name="TM1JavaApi" />
+    </root>
+  </artifact>
+</component>

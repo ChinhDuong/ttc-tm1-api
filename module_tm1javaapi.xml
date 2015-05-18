@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_tm1javaapi" default="compile.module.tm1javaapi">
+  <dirname property="module.tm1javaapi.basedir" file="${ant.file.module_tm1javaapi}"/>
+  
+  <property name="module.jdk.home.tm1javaapi" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.tm1javaapi" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.tm1javaapi" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.tm1javaapi" value="-encoding UTF-8 -source 1.5 -target 1.5 ${compiler.args}"/>
+  
+  <property name="tm1javaapi.output.dir" value="${module.tm1javaapi.basedir}/target/classes"/>
+  <property name="tm1javaapi.testoutput.dir" value="${module.tm1javaapi.basedir}/target/test-classes"/>
+  
+  <path id="tm1javaapi.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="tm1javaapi.module.production.classpath">
+    <path refid="${module.jdk.classpath.tm1javaapi}"/>
+    <pathelement location="${basedir}/lib/jaybird-full-2.2.7.jar"/>
+    <pathelement location="${basedir}/lib/TM1JavaApi.jar"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.12.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:1.1.3.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.1.3.classpath"/>
+    <path refid="library.maven:_javax.servlet:servlet-api:2.5.classpath"/>
+    <pathelement location="${basedir}/lib/pmpsvc.jar"/>
+  </path>
+  
+  <path id="tm1javaapi.runtime.production.module.classpath">
+    <pathelement location="${tm1javaapi.output.dir}"/>
+    <pathelement location="${basedir}/lib/jaybird-full-2.2.7.jar"/>
+    <pathelement location="${basedir}/lib/TM1JavaApi.jar"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.12.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:1.1.3.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.1.3.classpath"/>
+    <path refid="library.maven:_javax.servlet:servlet-api:2.5.classpath"/>
+    <pathelement location="${basedir}/lib/pmpsvc.jar"/>
+  </path>
+  
+  <path id="tm1javaapi.module.classpath">
+    <path refid="${module.jdk.classpath.tm1javaapi}"/>
+    <pathelement location="${tm1javaapi.output.dir}"/>
+    <pathelement location="${basedir}/lib/jaybird-full-2.2.7.jar"/>
+    <pathelement location="${basedir}/lib/TM1JavaApi.jar"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.12.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:1.1.3.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.1.3.classpath"/>
+    <path refid="library.maven:_javax.servlet:servlet-api:2.5.classpath"/>
+    <pathelement location="${basedir}/lib/pmpsvc.jar"/>
+  </path>
+  
+  <path id="tm1javaapi.runtime.module.classpath">
+    <pathelement location="${tm1javaapi.testoutput.dir}"/>
+    <pathelement location="${tm1javaapi.output.dir}"/>
+    <pathelement location="${basedir}/lib/jaybird-full-2.2.7.jar"/>
+    <pathelement location="${basedir}/lib/TM1JavaApi.jar"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.12.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:1.1.3.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.1.3.classpath"/>
+    <path refid="library.maven:_javax.servlet:servlet-api:2.5.classpath"/>
+    <pathelement location="${basedir}/lib/pmpsvc.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.tm1javaapi">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.tm1javaapi">
+    <patternset refid="excluded.from.module.tm1javaapi"/>
+  </patternset>
+  
+  <path id="tm1javaapi.module.sourcepath">
+    <dirset dir="${module.tm1javaapi.basedir}">
+      <include name="src/main/java"/>
+      <include name="src/main/resources"/>
+    </dirset>
+  </path>
+  
+  <path id="tm1javaapi.module.test.sourcepath">
+    <dirset dir="${module.tm1javaapi.basedir}">
+      <include name="src/test/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.tm1javaapi" depends="compile.module.tm1javaapi.production,compile.module.tm1javaapi.tests" description="Compile module TM1JavaApi"/>
+  
+  <target name="compile.module.tm1javaapi.production" description="Compile module TM1JavaApi; production classes">
+    <mkdir dir="${tm1javaapi.output.dir}"/>
+    <javac destdir="${tm1javaapi.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.tm1javaapi}/javac">
+      <compilerarg line="${compiler.args.tm1javaapi}"/>
+      <bootclasspath refid="tm1javaapi.module.bootclasspath"/>
+      <classpath refid="tm1javaapi.module.production.classpath"/>
+      <src refid="tm1javaapi.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.tm1javaapi"/>
+    </javac>
+    
+    <copy todir="${tm1javaapi.output.dir}">
+      <fileset dir="${module.tm1javaapi.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.tm1javaapi.basedir}/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.tm1javaapi.tests" depends="compile.module.tm1javaapi.production" description="compile module TM1JavaApi; test classes" unless="skip.tests">
+    <mkdir dir="${tm1javaapi.testoutput.dir}"/>
+    <javac destdir="${tm1javaapi.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.tm1javaapi}/javac">
+      <compilerarg line="${compiler.args.tm1javaapi}"/>
+      <bootclasspath refid="tm1javaapi.module.bootclasspath"/>
+      <classpath refid="tm1javaapi.module.classpath"/>
+      <src refid="tm1javaapi.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.tm1javaapi"/>
+    </javac>
+    
+    <copy todir="${tm1javaapi.testoutput.dir}">
+      <fileset dir="${module.tm1javaapi.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.tm1javaapi" description="cleanup module">
+    <delete dir="${tm1javaapi.output.dir}"/>
+    <delete dir="${tm1javaapi.testoutput.dir}"/>
+  </target>
+</project>

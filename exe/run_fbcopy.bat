@@ -1,0 +1,1 @@
+fbcopy.exe CE sysdba:masterkey@localhost:C:\DATA\SSP.GDB sysdba:masterkey@localhost:C:\DATA\TM1.GDB < tm1copy.def
