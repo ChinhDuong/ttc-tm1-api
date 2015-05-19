@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -93,7 +92,7 @@ public class ImportBUSImpl implements IImportBUS {
 
 
     public void ImportTM1(String pYear) {
-        String sqlText = "SELECT TABLENAME, CUBENAME, PROCESSNAME FROM TM1_TABLEIMPORT WHERE CUBENAME != 'Z'";
+        String sqlText = "SELECT TABLENAME, CUBENAME, CLEARCONDITION FROM TM1_TABLEIMPORT WHERE CUBENAME != 'Z'";
         CachedRowSetImpl tblImport = fbDAO.ExecuteQueySQLText(sqlText);
         try {
             while (tblImport.next()) {
@@ -102,18 +101,21 @@ public class ImportBUSImpl implements IImportBUS {
 
                 CachedRowSetImpl data = fbDAO.ExecuteQueySQLText(sqlText);
 
-                String condition = "Nam: " + pYear;
-                ResultSetMetaData meta = data.getMetaData();
-                int numberOfCol = meta.getColumnCount();
-                for (int i = 1; i <= numberOfCol; ++i) {
-                    if (meta.getColumnName(i).equalsIgnoreCase("DM_PHIENBAN")) {
-                        condition = condition + " & DM_PhienBan: ThucHien";
-                        break;
-                    }
+                String condition = tblImport.getString("CLEARCONDITION");
+                if (!condition.isEmpty()) {
+                    condition = condition + " & NAM: " + pYear;
                 }
+//                ResultSetMetaData meta = data.getMetaData();
+//                int numberOfCol = meta.getColumnCount();
+//                for (int i = 1; i <= numberOfCol; ++i) {
+//                    if (meta.getColumnName(i).equalsIgnoreCase("DM_PHIENBAN")) {
+//                        condition = condition + " & DM_PhienBan: ThucHien";
+//                        break;
+//                    }
+//                }
 
                 String[] params = {condition, cubeName};
-                //tm1DAO.RunProcess("ClearActualData", params);
+                tm1DAO.RunProcess("ClearActualData", params);
 
                 tm1DAO.ImportIntoCube(data, cubeName);
             }
