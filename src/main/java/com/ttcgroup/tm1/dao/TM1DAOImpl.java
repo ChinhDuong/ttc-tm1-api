@@ -37,7 +37,6 @@ public class TM1DAOImpl implements ITM1DAO {
         TM1Server serv = tm1_bean.openConnection(serverName, userName, password);
         TM1Cube cube = serv.getCube(cubeName);
 
-        boolean isClear = true;
         if (cube.isError())
             throw new Exception("Cube is error.{Cube: " + cubeName);
 
@@ -78,7 +77,7 @@ public class TM1DAOImpl implements ITM1DAO {
         serv.disconnect();
     }
 
-    public void ImportIntoCube(CachedRowSetImpl crs, String cubeName,TM1Server serv) throws Exception {
+    public void ImportIntoCube(CachedRowSetImpl crs, String cubeName, TM1Server serv) throws Exception {
 
         //TM1Bean tm1_bean = new TM1Bean();
         //tm1_bean.setAdminHost(adminHost);
@@ -122,7 +121,7 @@ public class TM1DAOImpl implements ITM1DAO {
      *
      * @param procName: process Name
      */
-    public void RunProcess(String procName,String[] params) throws Exception {
+    public void RunProcess(String procName, String[] params) throws Exception {
         TM1Bean tm1_bean = new TM1Bean();
         tm1_bean.setAdminHost(adminHost);
         TM1Server serv = tm1_bean.openConnection(serverName, userName, password);
@@ -143,8 +142,7 @@ public class TM1DAOImpl implements ITM1DAO {
             throw new Exception("Executing process '" + procName + "' is error " + ret.getErrorMessage());
     }
 
-    public TM1Server OpenConnection()
-    {
+    public TM1Server OpenConnection() {
         TM1Bean tm1_bean = new TM1Bean();
         tm1_bean.setAdminHost(adminHost);
         return tm1_bean.openConnection(serverName, userName, password);
@@ -156,23 +154,23 @@ public class TM1DAOImpl implements ITM1DAO {
         tm1_bean.setAdminHost(adminHost);
         TM1Server serv = tm1_bean.openConnection(serverName, userName, password);
 
-        for(UserInfo user : users){
+        for (UserInfo user : users) {
             TM1Val val = serv.addClient(user.getUserName());
-            if (val.isError()){
+            if (val.isError()) {
                 throw new Exception("Adding user is error." + val.getErrorMessage());
             }
 
             TM1Client client = serv.getClient(user.getUserName());
             client.assignPassword(user.getPassword());
-            if (val.isError()){
+            if (val.isError()) {
                 throw new Exception("Asigning password is error." + val.getErrorMessage());
             }
             TM1Group group = serv.getGroup("}tp_Everyone");
-            if (group.isError()){
+            if (group.isError()) {
                 throw new Exception(" }tp_Everyone is error." + group.getErrorMessage());
             }
             val = client.assignToGroup(group);
-            if (val.isError()){
+            if (val.isError()) {
                 throw new Exception("Asigning user to }tp_Everyone is error." + val.getErrorMessage());
             }
         }
@@ -183,19 +181,19 @@ public class TM1DAOImpl implements ITM1DAO {
         tm1_bean.setAdminHost(adminHost);
         TM1Server serv = tm1_bean.openConnection(serverName, userName, password);
 
-        for(GroupInfo group : groups){
+        for (GroupInfo group : groups) {
             TM1Val val = serv.addGroup(group.getGroupName());
             if (val.isError())
                 throw new Exception("Adding group is error." + val.getErrorMessage());
         }
     }
 
-    public void SetUserPermission(List<UserInfo> users) throws Exception{
+    public void SetUserPermission(List<UserInfo> users) throws Exception {
         TM1Bean tm1_bean = new TM1Bean();
         tm1_bean.setAdminHost(adminHost);
         TM1Server serv = tm1_bean.openConnection(serverName, userName, password);
 
-        for(UserInfo user : users){
+        for (UserInfo user : users) {
             TM1Client client = serv.getClient(user.getUserName());
             if (client.isError())
                 throw new Exception("Client is error. {Client "
@@ -203,13 +201,11 @@ public class TM1DAOImpl implements ITM1DAO {
 
             for (String groupName : user.getAssignedGroup()) {
                 TM1Group group = serv.getGroup(groupName);
-                if (!group.isError())
-                {
+                if (!group.isError()) {
                     TM1Val val = client.assignToGroup(group);
                     if (val.isError())
-                        throw new Exception("Assign to group is error."+val.getErrorMessage());
-                }
-                else
+                        throw new Exception("Assign to group is error." + val.getErrorMessage());
+                } else
                     throw new Exception("Group is error. {Group "
                             + groupName + "." + group.getErrorMessage());
             }

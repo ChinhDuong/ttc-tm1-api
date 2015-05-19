@@ -1496,3 +1496,138 @@
 2015-05-14_13:07:16.210 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 486 ms. com.sun.rowset.CachedRowSetImpl@4323b632,Kế hoạch cho vay,
 2015-05-14_13:07:16.250 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 40 ms. SELECT * FROM TM1_KHLAIVAY,
 2015-05-14_13:07:16.771 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 520 ms. com.sun.rowset.CachedRowSetImpl@748b61a3,KHLAIVAY,
+2015-05-18_13:23:38.621 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Clear all data
+2015-05-18_13:23:38.627 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Copy data from SSP to temp
+2015-05-18_13:23:38.627 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Prepare data for import into TM1
+2015-05-18_13:23:38.628 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Import into TM1
+2015-05-18_13:23:39.555 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 926 ms. SELECT TABLENAME, CUBENAME, PROCESSNAME FROM TM1_TABLEIMPORT WHERE CUBENAME != 'Z',
+2015-05-18_13:23:39.710 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 155 ms. SELECT * FROM TM1_DUONGMAT,
+2015-05-18_13:23:40.512 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 97 ms. com.sun.rowset.CachedRowSetImpl@69541bf9,KHKD đường mật,
+2015-05-18_13:23:40.680 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 167 ms. SELECT * FROM TM1_KQKDTHANG,
+2015-05-18_13:23:41.134 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 90 ms. com.sun.rowset.CachedRowSetImpl@24cd3f3a,KetQuaKinhDoanhThang,
+2015-05-18_13:23:41.278 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 144 ms. SELECT * FROM TM1_KQKD_THUCHIEN,
+2015-05-18_13:26:46.040 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Clear all data
+2015-05-18_13:26:46.044 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Copy data from SSP to temp
+2015-05-18_13:26:46.044 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Prepare data for import into TM1
+2015-05-18_13:26:46.044 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Import into TM1
+2015-05-18_13:26:46.441 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 397 ms. SELECT TABLENAME, CUBENAME, PROCESSNAME FROM TM1_TABLEIMPORT WHERE CUBENAME != 'Z',
+2015-05-18_13:26:46.602 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 160 ms. SELECT * FROM TM1_DUONGMAT,
+2015-05-18_13:27:59.433 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Clear all data
+2015-05-18_13:27:59.437 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Copy data from SSP to temp
+2015-05-18_13:27:59.437 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Prepare data for import into TM1
+2015-05-18_13:27:59.438 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Import into TM1
+2015-05-18_13:28:00.284 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 846 ms. SELECT TABLENAME, CUBENAME, PROCESSNAME FROM TM1_TABLEIMPORT WHERE CUBENAME != 'Z',
+2015-05-18_13:28:00.463 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 179 ms. SELECT * FROM TM1_DUONGMAT,
+2015-05-18_13:28:01.283 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 96 ms. com.sun.rowset.CachedRowSetImpl@36858c07,KHKD đường mật,
+2015-05-18_13:28:01.439 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 156 ms. SELECT * FROM TM1_KQKDTHANG,
+2015-05-18_13:28:01.662 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 86 ms. com.sun.rowset.CachedRowSetImpl@24dee999,KetQuaKinhDoanhThang,
+2015-05-18_13:28:02.116 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 454 ms. SELECT * FROM TM1_KQKD_THUCHIEN,
+2015-05-18_13:28:02.314 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 80 ms. com.sun.rowset.CachedRowSetImpl@6046e56f,KQKD_THUCHIEN,
+2015-05-18_13:28:02.462 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 148 ms. SELECT * FROM TM1_CDKT_THUCHIEN,
+2015-05-18_13:28:02.692 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 81 ms. com.sun.rowset.CachedRowSetImpl@5dc844b2,CDKT_THUCHIEN,
+2015-05-18_13:28:02.858 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 166 ms. SELECT * FROM TM1_DTCKTHANG,
+2015-05-18_13:28:03.061 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 78 ms. com.sun.rowset.CachedRowSetImpl@77aa13c5,Kế hoạch đầu tư chứng khoán tháng,
+2015-05-18_13:28:03.229 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 168 ms. SELECT * FROM TM1_DTCK,
+2015-05-18_13:28:03.435 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 75 ms. com.sun.rowset.CachedRowSetImpl@6e86d0bc,Kế hoạch đầu tư chứng khoán,
+2015-05-18_13:28:03.595 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 160 ms. SELECT * FROM TM1_NXT_THUCHIEN,
+2015-05-18_13:28:03.803 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 72 ms. com.sun.rowset.CachedRowSetImpl@1e8af06d,NXT_THUCHIEN,
+2015-05-18_13:28:04.193 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 245 ms. SELECT * FROM TM1_KHLAIUNGTRUOC,
+2015-05-18_13:28:04.392 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 74 ms. com.sun.rowset.CachedRowSetImpl@4286ae77,Kế hoạch lãi ứng trước,
+2015-05-18_13:28:04.540 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 148 ms. SELECT * FROM TM1_KHCHOVAY,
+2015-05-18_13:28:04.723 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 64 ms. com.sun.rowset.CachedRowSetImpl@33540d0c,Kế hoạch cho vay,
+2015-05-18_13:28:04.887 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 163 ms. SELECT * FROM TM1_KHLAIVAY,
+2015-05-18_13:28:05.053 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 54 ms. com.sun.rowset.CachedRowSetImpl@70a6cac9,KHLAIVAY,
+2015-05-18_13:30:44.656 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Clear all data
+2015-05-18_13:30:44.662 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Copy data from SSP to temp
+2015-05-18_13:30:44.662 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Prepare data for import into TM1
+2015-05-18_13:31:12.117 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteSQLText execution : 27455 ms. EXECUTE PROCEDURE TM1_CALALL('2015'),
+2015-05-18_13:31:12.117 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Import into TM1
+2015-05-18_13:31:12.319 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 201 ms. SELECT TABLENAME, CUBENAME, PROCESSNAME FROM TM1_TABLEIMPORT WHERE CUBENAME != 'Z',
+2015-05-18_13:31:12.492 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 173 ms. SELECT * FROM TM1_DUONGMAT,
+2015-05-18_13:32:30.619 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Clear all data
+2015-05-18_13:32:35.346 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteSQLText execution : 4722 ms. EXECUTE PROCEDURE TM1_CLEARTM1;,
+2015-05-18_13:32:35.346 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Copy data from SSP to temp
+2015-05-18_13:33:50.890 [main] DEBUG com.ttcgroup.tm1.bus.ImportBUSImpl - CopyFBData execution : 75544 ms. 
+2015-05-18_13:33:50.890 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Prepare data for import into TM1
+2015-05-18_13:37:41.762 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteSQLText execution : 230872 ms. EXECUTE PROCEDURE TM1_CALALL('2015'),
+2015-05-18_13:37:41.762 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Import into TM1
+2015-05-18_13:37:41.964 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 201 ms. SELECT TABLENAME, CUBENAME, PROCESSNAME FROM TM1_TABLEIMPORT WHERE CUBENAME != 'Z',
+2015-05-18_13:37:42.114 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 149 ms. SELECT * FROM TM1_DUONGMAT,
+2015-05-18_13:37:43.608 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 782 ms. com.sun.rowset.CachedRowSetImpl@14ec621e,KHKD đường mật,
+2015-05-18_13:37:43.766 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 158 ms. SELECT * FROM TM1_KQKDTHANG,
+2015-05-18_13:37:44.129 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 258 ms. com.sun.rowset.CachedRowSetImpl@3274bc70,KetQuaKinhDoanhThang,
+2015-05-18_13:37:44.311 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 182 ms. SELECT * FROM TM1_KQKD_THUCHIEN,
+2015-05-18_13:37:46.042 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 1630 ms. com.sun.rowset.CachedRowSetImpl@43bc2c2a,KQKD_THUCHIEN,
+2015-05-18_13:37:46.263 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 221 ms. SELECT * FROM TM1_CDKT_THUCHIEN,
+2015-05-18_13:37:51.597 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 5214 ms. com.sun.rowset.CachedRowSetImpl@1c2c2958,CDKT_THUCHIEN,
+2015-05-18_13:37:51.819 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 221 ms. SELECT * FROM TM1_DTCKTHANG,
+2015-05-18_13:37:58.292 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 6390 ms. com.sun.rowset.CachedRowSetImpl@61607dda,Kế hoạch đầu tư chứng khoán tháng,
+2015-05-18_13:37:58.464 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 171 ms. SELECT * FROM TM1_DTCK,
+2015-05-18_13:37:59.341 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 785 ms. com.sun.rowset.CachedRowSetImpl@f31cdb,Kế hoạch đầu tư chứng khoán,
+2015-05-18_13:37:59.512 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 170 ms. SELECT * FROM TM1_NXT_THUCHIEN,
+2015-05-18_13:38:04.363 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 4761 ms. com.sun.rowset.CachedRowSetImpl@5bdc8869,NXT_THUCHIEN,
+2015-05-18_13:38:04.541 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 177 ms. SELECT * FROM TM1_KHLAIUNGTRUOC,
+2015-05-18_13:38:05.504 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 873 ms. com.sun.rowset.CachedRowSetImpl@516aee36,Kế hoạch lãi ứng trước,
+2015-05-18_13:38:05.680 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 175 ms. SELECT * FROM TM1_KHCHOVAY,
+2015-05-18_13:38:08.160 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 2396 ms. com.sun.rowset.CachedRowSetImpl@644bffa1,Kế hoạch cho vay,
+2015-05-18_13:38:08.330 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 170 ms. SELECT * FROM TM1_KHLAIVAY,
+2015-05-18_13:38:10.174 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 1759 ms. com.sun.rowset.CachedRowSetImpl@42caceb1,KHLAIVAY,
+2015-05-18_13:39:34.631 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Clear all data
+2015-05-18_13:40:00.232 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteSQLText execution : 25601 ms. EXECUTE PROCEDURE TM1_CLEARTM1;,
+2015-05-18_13:40:00.233 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Copy data from SSP to temp
+2015-05-18_13:40:47.518 [main] DEBUG com.ttcgroup.tm1.bus.ImportBUSImpl - CopyFBData execution : 47285 ms. 
+2015-05-18_13:40:47.518 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Prepare data for import into TM1
+2015-05-18_13:45:03.877 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteSQLText execution : 256358 ms. EXECUTE PROCEDURE TM1_CALALL('2015'),
+2015-05-18_13:45:03.877 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Import into TM1
+2015-05-18_13:45:04.080 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 203 ms. SELECT TABLENAME, CUBENAME, PROCESSNAME FROM TM1_TABLEIMPORT WHERE CUBENAME != 'Z',
+2015-05-18_13:45:04.241 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 161 ms. SELECT * FROM TM1_DUONGMAT,
+2015-05-18_13:54:42.849 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Clear all data
+2015-05-18_13:54:42.854 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Copy data from SSP to temp
+2015-05-18_13:54:42.854 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Prepare data for import into TM1
+2015-05-18_13:54:42.854 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Import into TM1
+2015-05-18_13:54:43.240 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 386 ms. SELECT TABLENAME, CUBENAME, PROCESSNAME FROM TM1_TABLEIMPORT WHERE CUBENAME != 'Z',
+2015-05-18_13:54:43.390 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 149 ms. SELECT * FROM TM1_DUONGMAT,
+2015-05-18_13:54:44.520 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 593 ms. com.sun.rowset.CachedRowSetImpl@1cbcfd,KHKD đường mật,
+2015-05-18_13:54:44.665 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 144 ms. SELECT * FROM TM1_KQKDTHANG,
+2015-05-18_13:54:45.316 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 224 ms. com.sun.rowset.CachedRowSetImpl@7f0205c2,KetQuaKinhDoanhThang,
+2015-05-18_13:54:45.461 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 145 ms. SELECT * FROM TM1_KQKD_THUCHIEN,
+2015-05-18_13:54:47.051 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 1490 ms. com.sun.rowset.CachedRowSetImpl@1602c861,KQKD_THUCHIEN,
+2015-05-18_13:54:47.328 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 277 ms. SELECT * FROM TM1_CDKT_THUCHIEN,
+2015-05-18_13:54:53.035 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 5564 ms. com.sun.rowset.CachedRowSetImpl@7f1993d8,CDKT_THUCHIEN,
+2015-05-18_13:54:53.256 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 221 ms. SELECT * FROM TM1_DTCKTHANG,
+2015-05-18_13:54:59.911 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 6530 ms. com.sun.rowset.CachedRowSetImpl@46a93edc,Kế hoạch đầu tư chứng khoán tháng,
+2015-05-18_13:55:00.069 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 157 ms. SELECT * FROM TM1_DTCK,
+2015-05-18_13:55:00.916 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 722 ms. com.sun.rowset.CachedRowSetImpl@2ccef28d,Kế hoạch đầu tư chứng khoán,
+2015-05-18_13:55:01.105 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 189 ms. SELECT * FROM TM1_NXT_THUCHIEN,
+2015-05-18_13:55:06.067 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 4825 ms. com.sun.rowset.CachedRowSetImpl@213952a4,NXT_THUCHIEN,
+2015-05-18_13:55:06.248 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 181 ms. SELECT * FROM TM1_KHLAIUNGTRUOC,
+2015-05-18_13:55:07.350 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 984 ms. com.sun.rowset.CachedRowSetImpl@41c1b019,Kế hoạch lãi ứng trước,
+2015-05-18_13:55:07.524 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 174 ms. SELECT * FROM TM1_KHCHOVAY,
+2015-05-18_13:55:09.976 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 2335 ms. com.sun.rowset.CachedRowSetImpl@550ebbaa,Kế hoạch cho vay,
+2015-05-18_13:55:10.151 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 174 ms. SELECT * FROM TM1_KHLAIVAY,
+2015-05-18_13:55:11.854 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 1584 ms. com.sun.rowset.CachedRowSetImpl@fed27f0,KHLAIVAY,
+2015-05-18_14:04:34.803 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Clear all data
+2015-05-18_14:04:34.807 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Copy data from SSP to temp
+2015-05-18_14:04:34.808 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Prepare data for import into TM1
+2015-05-18_14:04:34.808 [main] INFO  com.ttcgroup.tm1.run.ImportTM1 - Import into TM1
+2015-05-18_14:04:35.186 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 378 ms. SELECT TABLENAME, CUBENAME, PROCESSNAME FROM TM1_TABLEIMPORT WHERE CUBENAME != 'Z',
+2015-05-18_14:04:35.358 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 171 ms. SELECT * FROM TM1_DUONGMAT,
+2015-05-18_14:04:36.816 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 813 ms. com.sun.rowset.CachedRowSetImpl@5ebb8619,KHKD đường mật,
+2015-05-18_14:04:36.986 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 169 ms. SELECT * FROM TM1_KQKDTHANG,
+2015-05-18_14:04:37.395 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 261 ms. com.sun.rowset.CachedRowSetImpl@5dc844b2,KetQuaKinhDoanhThang,
+2015-05-18_14:04:37.627 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 232 ms. SELECT * FROM TM1_KQKD_THUCHIEN,
+2015-05-18_14:04:39.278 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 1521 ms. com.sun.rowset.CachedRowSetImpl@10b16391,KQKD_THUCHIEN,
+2015-05-18_14:04:39.520 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 242 ms. SELECT * FROM TM1_CDKT_THUCHIEN,
+2015-05-18_14:04:44.842 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 5181 ms. com.sun.rowset.CachedRowSetImpl@43bb703d,CDKT_THUCHIEN,
+2015-05-18_14:04:45.038 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 196 ms. SELECT * FROM TM1_DTCKTHANG,
+2015-05-18_14:04:50.938 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 5775 ms. com.sun.rowset.CachedRowSetImpl@53a9cd34,Kế hoạch đầu tư chứng khoán tháng,
+2015-05-18_14:04:51.199 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 261 ms. SELECT * FROM TM1_DTCK,
+2015-05-18_14:04:51.976 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 646 ms. com.sun.rowset.CachedRowSetImpl@4f21c77b,Kế hoạch đầu tư chứng khoán,
+2015-05-18_14:04:52.163 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 187 ms. SELECT * FROM TM1_NXT_THUCHIEN,
+2015-05-18_14:04:56.630 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 4336 ms. com.sun.rowset.CachedRowSetImpl@5818ae41,NXT_THUCHIEN,
+2015-05-18_14:04:56.815 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 185 ms. SELECT * FROM TM1_KHLAIUNGTRUOC,
+2015-05-18_14:04:57.614 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 669 ms. com.sun.rowset.CachedRowSetImpl@7a7caf9b,Kế hoạch lãi ứng trước,
+2015-05-18_14:04:57.809 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 194 ms. SELECT * FROM TM1_KHCHOVAY,
+2015-05-18_14:05:00.102 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 2163 ms. com.sun.rowset.CachedRowSetImpl@b6704b6,Kế hoạch cho vay,
+2015-05-18_14:05:00.263 [main] DEBUG com.ttcgroup.tm1.dao.FBDAOImpl - ExecuteQueySQLText execution : 160 ms. SELECT * FROM TM1_KHLAIVAY,
+2015-05-18_14:05:01.855 [main] DEBUG com.ttcgroup.tm1.dao.TM1DAOImpl - ImportIntoCube execution : 1467 ms. com.sun.rowset.CachedRowSetImpl@2941cf89,KHLAIVAY,

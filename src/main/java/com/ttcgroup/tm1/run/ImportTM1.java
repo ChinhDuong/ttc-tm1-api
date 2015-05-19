@@ -29,39 +29,30 @@ public class ImportTM1 {
             prop.load(inputStream);
             ITM1DAO tm1DAO = null;
             IFBDAO fbDAO = null;
-//            String fbCopy_folder = prop.getProperty("fbCopy_folder");
-//            String fbCopy_bat = prop.getProperty("fbCopy_bat");
 
             tm1DAO = (ITM1DAO) ProxyFactory.newInstance(new TM1DAOImpl(prop.getProperty("tm1_adminhost")
                     , prop.getProperty("tm1_serverName")
                     , prop.getProperty("tm1_user")
                     , prop.getProperty("tm1_password")));
-//            tm1DAO = new TM1DAOImpl(prop.getProperty("tm1_adminhost")
-//                    , prop.getProperty("tm1_serverName")
-//                    , prop.getProperty("tm1_user")
-//                    , prop.getProperty("tm1_password"));
+
 
             fbDAO = (IFBDAO) ProxyFactory.newInstance(new FBDAOImpl(prop.getProperty("fb_address")
                     ,prop.getProperty("fb_user")
                     ,prop.getProperty("fb_password")));
-//            fbDAO = new FBDAOImpl(prop.getProperty("fb_address")
-//                    ,prop.getProperty("fb_user")
-//                    ,prop.getProperty("fb_password"));
+
 
             importBUS.setFbDAO(fbDAO);
             importBUS.setTm1DAO(tm1DAO);
-
+            String _year = "2015";
             logger.info("Clear all data");
-            //importBUS.ClearData();
+//            importBUS.ClearData();
             logger.info("Copy data from SSP to temp");
-            //importBUS.CopyFBData();
+//            importBUS.CopyFBData();
             logger.info("Prepare data for import into TM1");
-            //importBUS.CallAll("2015");
+//            importBUS.CallAll(_year);
             logger.info("Import into TM1");
-            importBUS.ImportTM1();
-//            String[] params = {"2015","KHKD đường mật"};
-//
-//            tm1DAO.RunProcess("ClearActualData",params);
+            importBUS.ImportTM1(_year);
+
         }
         catch (Exception ex)
         {
