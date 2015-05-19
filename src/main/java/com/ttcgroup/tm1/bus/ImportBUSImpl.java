@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -52,7 +53,7 @@ public class ImportBUSImpl implements IImportBUS {
 
 
     public void UpdateTableImport() {
-        try{
+        try {
             String fileName = "C:/DATA/exe/tm1copy.def";
             List<String> lines;
             lines = Files.readAllLines(Paths.get(fileName), StandardCharsets.UTF_8);
@@ -62,8 +63,7 @@ public class ImportBUSImpl implements IImportBUS {
             List<String> tblNames = new ArrayList<String>();
 
             //extract table names
-            for (String text : lines)
-            {
+            for (String text : lines) {
                 Matcher matcher = parse.matcher(text);
                 if (matcher.find()) {
                     tblNames.add(matcher.group(0));
@@ -73,25 +73,22 @@ public class ImportBUSImpl implements IImportBUS {
             fbDAO.ExecuteSQLText(sqlText);
 
             sqlText = "INSERT INTO TM1_TABLEIMPORT(TABLENAME,CUBENAME,PROCESSNAME)";
-            sqlText = sqlText +"VALUES('?','Z','');";
-            String execute="";
-            for (String text2 : tblNames)
-            {
-                execute = execute + sqlText.replace("?",text2);
+            sqlText = sqlText + "VALUES('?','Z','');";
+            String execute = "";
+            for (String text2 : tblNames) {
+                execute = execute + sqlText.replace("?", text2);
                 //fbDAO.ExecuteSQLText(sqlText.replace("?",text2));
             }
             //System.out.println("EXECUTE BLOCK AS BEGIN " + execute + "END");
             fbDAO.ExecuteSQLText("EXECUTE BLOCK AS BEGIN " + execute + "END");
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 
     }
 
     public void CallAll(String pYear) {
-        fbDAO.ExecuteSQLText("EXECUTE PROCEDURE TM1_CALALL('"+ pYear+"')");
+        fbDAO.ExecuteSQLText("EXECUTE PROCEDURE TM1_CALALL('" + pYear + "')");
     }
 
 
@@ -99,17 +96,26 @@ public class ImportBUSImpl implements IImportBUS {
         String sqlText = "SELECT TABLENAME, CUBENAME, PROCESSNAME FROM TM1_TABLEIMPORT WHERE CUBENAME != 'Z'";
         CachedRowSetImpl tblImport = fbDAO.ExecuteQueySQLText(sqlText);
         try {
-            while (tblImport.next()){
+            while (tblImport.next()) {
                 sqlText = "SELECT * FROM " + tblImport.getString("TABLENAME");
                 String cubeName = tblImport.getString("CUBENAME");
 
                 CachedRowSetImpl data = fbDAO.ExecuteQueySQLText(sqlText);
 
                 String condition = "Nam: " + pYear;
-                condition = condition + " & DM_PhienBan: ThucHien";
+                ResultSetMetaData meta = data.getMetaData();
+                int numberOfCol = meta.getColumnCount();
+                for (int i = 1; i <= numberOfCol; ++i) {
+                    if (meta.getColumnName(i).equalsIgnoreCase("DM_PHIENBAN")) {
+                        condition = condition + " & DM_PhienBan: ThucHien";
+                        break;
+                    }
+                }
+
                 String[] params = {condition, cubeName};
-                tm1DAO.RunProcess("ClearActualData", params);
-                tm1DAO.ImportIntoCube(data,cubeName);
+                //tm1DAO.RunProcess("ClearActualData", params);
+
+                tm1DAO.ImportIntoCube(data, cubeName);
             }
             //serv.disconnect();
         } catch (Exception e) {
@@ -129,7 +135,7 @@ public class ImportBUSImpl implements IImportBUS {
             //Create a new list of student to be filled by CSV file data
             List users = new ArrayList();
 
-            String line = "";
+            String line;//= "";
 
             //Create the file reader
             fileReader = new BufferedReader(new FileReader(fileName));
@@ -145,15 +151,14 @@ public class ImportBUSImpl implements IImportBUS {
 
                 if (tokens.length > 0) {
                     //Create a new student object and fill his  data
-                    UserInfo user = new UserInfo( tokens[USER_NAME], tokens[PASSWORD]);
+                    UserInfo user = new UserInfo(tokens[USER_NAME], tokens[PASSWORD]);
                     users.add(user);
                 }
             }
 
             tm1DAO.ImportUsers(users);
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
@@ -187,15 +192,14 @@ public class ImportBUSImpl implements IImportBUS {
                 String[] tokens = line.split(COMMA_DELIMITER);
                 if (tokens.length > 0) {
                     //Create a new student object and fill his  data
-                    GroupInfo group = new GroupInfo( tokens[GROUP_NAME]);
+                    GroupInfo group = new GroupInfo(tokens[GROUP_NAME]);
                     groups.add(group);
                 }
             }
 
             tm1DAO.ImportGroups(groups);
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
@@ -236,15 +240,14 @@ public class ImportBUSImpl implements IImportBUS {
 
                 if (tokens.length > 0) {
                     //Create a new student object and fill his  data
-                    UserInfo  user = new UserInfo(groups, tokens[USER_NAME], tokens[PASSWORD]);
+                    UserInfo user = new UserInfo(groups, tokens[USER_NAME], tokens[PASSWORD]);
                     users.add(user);
                 }
             }
 
             tm1DAO.SetUserPermission(users);
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
@@ -255,31 +258,26 @@ public class ImportBUSImpl implements IImportBUS {
         }
     }
 
-    public void ChangePassword(String adminUser, String adminPassword, String userName, String newPassword, String adminHost) throws Exception{
+    public void ChangePassword(String adminUser, String adminPassword, String userName, String newPassword, String adminHost) throws Exception {
         TM1Bean tm1_bean = new TM1Bean();
         tm1_bean.setAdminHost(adminHost);
         int serverCounts = tm1_bean.getNumberOfServers();
-        for(int i = 0 ; i<serverCounts;++i){
+        for (int i = 0; i < serverCounts; ++i) {
             String serverName = tm1_bean.getServerName(i);
             TM1Server serv = tm1_bean.openConnection(serverName, adminUser, adminPassword);
             TM1Client client = serv.getClient(userName);
-            if (!client.isError())
-            {
+            if (!client.isError()) {
                 TM1Val result = client.assignPassword(newPassword);
-                if (result.isError())
-                {
+                if (result.isError()) {
                     logger.error("Changing password for " + userName
                             + " is error on server " + serverName + ". " + result.getErrorMessage());
                     throw new Exception("Changing password is error. {Client "
                             + userName + "." + result.getErrorMessage());
 
-                }
-                else
+                } else
                     logger.info("Changing password for " + userName
                             + " is successful on server " + serverName + ".");
-            }
-            else
-            {
+            } else {
                 logger.error("Changing password for " + userName
                         + " is error on server " + serverName + ". " + client.getErrorMessage());
             }
