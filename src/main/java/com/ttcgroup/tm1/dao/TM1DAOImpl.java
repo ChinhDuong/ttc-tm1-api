@@ -2,10 +2,12 @@ package com.ttcgroup.tm1.dao;
 
 import com.applix.tm1.*;
 import com.sun.rowset.CachedRowSetImpl;
-import com.ttcgroup.tm1.dto.GroupInfo;
-import com.ttcgroup.tm1.dto.UserInfo;
+import com.ttcgroup.tm1.dto.*;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Administrator on 4/2/2015.
@@ -28,7 +30,7 @@ public class TM1DAOImpl implements ITM1DAO {
      * Import into cube
      *
      * @param crs      : Data
-     * @param cubeName : Cube name
+     * @param cubeName : TM1CubeInfo name
      */
     public void ImportIntoCube(CachedRowSetImpl crs, String cubeName) throws Exception {
 
@@ -38,7 +40,7 @@ public class TM1DAOImpl implements ITM1DAO {
         TM1Cube cube = serv.getCube(cubeName);
 
         if (cube.isError())
-            throw new Exception("Cube is error.{Cube: " + cubeName);
+            throw new Exception("TM1CubeInfo is error.{TM1CubeInfo: " + cubeName);
 
         while (crs.next()) {// Scan input data
 
@@ -84,7 +86,7 @@ public class TM1DAOImpl implements ITM1DAO {
         //TM1Server serv = tm1_bean.openConnection(serverName, userName, password);
         TM1Cube cube = serv.getCube(cubeName);
         if (cube.isError())
-            throw new Exception("Cube is error.{Cube: " + cubeName);
+            throw new Exception("TM1CubeInfo is error.{TM1CubeInfo: " + cubeName);
         while (crs.next()) {// Scan input data
             TM1Val elemTitles;
             // get number of dimension
@@ -146,7 +148,6 @@ public class TM1DAOImpl implements ITM1DAO {
         TM1Bean tm1_bean = new TM1Bean();
         tm1_bean.setAdminHost(adminHost);
         return tm1_bean.openConnection(serverName, userName, password);
-        //return serv;
     }
 
     public void ImportUsers(List<UserInfo> users) throws Exception {
@@ -224,6 +225,94 @@ public class TM1DAOImpl implements ITM1DAO {
         if (result.isError())
             throw new Exception("Changing password is error. {Client "
                     + userName + "." + result.getErrorMessage());
+
+    }
+
+    public TM1ModelInfo ExportTM1Model() {
+        String pattern = "}"; // filter user object
+        TM1Bean tm1_bean = new TM1Bean();
+        tm1_bean.setAdminHost(adminHost);
+        TM1Server serv = tm1_bean.openConnection(serverName, userName, password);
+        TM1Val count = serv.getClientCount();
+        TM1ModelInfo model = new TM1ModelInfo();
+        //Get user
+        List<String> users = new LinkedList<String>();
+        for (int i = 1; i <= count.getInt(); ++i) {
+            String userName;
+            userName = serv.getClient(i).getName().getString();
+            users.add(userName);
+        }
+        model.setUser(users);
+        //Get group
+        count = serv.getGroupCount();
+        List<String> groups = new LinkedList<String>();
+        for (int i = 1; i <= count.getInt(); ++i) {
+            String groupName;
+            groupName = serv.getGroup(i).getName().getString();
+            groups.add(groupName);
+        }
+        model.setGroup(groups);
+        //Get process
+        count = serv.getProcessCount();
+        List<String> proceses = new LinkedList<String>();
+        for (int i = 1; i <= count.getInt(); ++i) {
+            String processName;
+            processName = serv.getProcess(i).getName().getString();
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(processName);
+            if (!m.find()) {
+                proceses.add(processName);
+            }
+        }
+        model.setProcess(proceses);
+        //Get dimension
+        count = serv.getDimensionCount();
+        List<TM1DimensionInfo> dimension = new LinkedList<TM1DimensionInfo>();
+        for (int i = 1; i <= count.getInt(); ++i) {
+            TM1Dimension dim = serv.getDimension(i);
+            TM1DimensionInfo dimInfo = new TM1DimensionInfo();
+            String dimName = dim.getName().getString();
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(dimName);
+            if (!m.find()) {
+                dimInfo.setName(dim.getName().getString());
+                // get element in dimension
+                int eleCount = dim.getElementCount().getInt();
+                List<String> element = new LinkedList<String>();
+                for (int j = 1; j <= eleCount; ++j) {
+                    TM1Element ele = dim.getElement(j);
+                    element.add(ele.getName().getString());
+                }
+                dimInfo.setElement(element);
+                dimension.add(dimInfo);
+            }
+        }
+        model.setDimension(dimension);
+
+        //Get cube
+        count = serv.getCubeCount();
+        List<TM1CubeInfo> cube = new LinkedList<TM1CubeInfo>();
+        for (int i = 1; i <= count.getInt(); ++i) {
+            TM1Cube cub = serv.getCube(i);
+            TM1CubeInfo cubeInfo = new TM1CubeInfo();
+            String cubName = cub.getName().getString();
+            Pattern r = Pattern.compile(pattern);
+            Matcher m = r.matcher(cubName);
+            if (!m.find()) {
+                cubeInfo.setName(cub.getName().getString());
+                // get element in dimension
+                int dimCount = cub.getDimensionCount().getInt();
+                List<String> dims = new LinkedList<String>();
+                for (int j = 1; j <= dimCount; ++j) {
+                    TM1Dimension dim = cub.getDimension(j);
+                    dims.add(dim.getName().getString());
+                }
+                cubeInfo.setDimension(dims);
+                cube.add(cubeInfo);
+            }
+        }
+        model.setCube(cube);
+        return model;
 
     }
 }

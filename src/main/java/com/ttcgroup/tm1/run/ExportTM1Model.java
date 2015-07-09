@@ -14,17 +14,19 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class ImportTM1 {
+/**
+ * Created by Administrator on 7/8/2015.
+ */
+public class ExportTM1Model {
     public static void main(String[] args) {
-	// write your code here
         Properties prop = new Properties();
         String propFileName = "config.properties";
-        Logger logger = LoggerFactory.getLogger(ImportTM1.class);
+        Logger logger = LoggerFactory.getLogger(ExportTM1Model.class);
         IImportBUS importBUS = null;
-        importBUS = (IImportBUS)ProxyFactory.newInstance(new ImportBUSImpl());
+        importBUS = (IImportBUS) ProxyFactory.newInstance(new ImportBUSImpl());
         //IImportBUS importBUS = new ImportBUSImpl();
 
-        try{
+        try {
             InputStream inputStream = new FileInputStream(propFileName);
             prop.load(inputStream);
             ITM1DAO tm1DAO = null;
@@ -37,27 +39,17 @@ public class ImportTM1 {
 
 
             fbDAO = (IFBDAO) ProxyFactory.newInstance(new FBDAOImpl(prop.getProperty("fb_address")
-                    ,prop.getProperty("fb_user")
-                    ,prop.getProperty("fb_password")));
+                    , prop.getProperty("fb_user")
+                    , prop.getProperty("fb_password")));
 
 
             importBUS.setFbDAO(fbDAO);
             importBUS.setTm1DAO(tm1DAO);
-            String _year = "2015";
-            logger.info("Clear all data");
-//            importBUS.ClearData();
-            logger.info("Copy data from SSP to temp");
-//            importBUS.CopyFBData();
-            logger.info("Prepare data for import into TM1");
-            importBUS.CallAll(_year);
-            logger.info("Import into TM1");
-            importBUS.ImportTM1(_year);
 
-        }
-        catch (Exception ex)
-        {
+            logger.info("Export tm1 model");
+            importBUS.ExportTM1Model2xls();
+        } catch (Exception ex) {
             logger.error(ex.getMessage());
         }
-
     }
 }

@@ -15,6 +15,7 @@ Checkpoint at 12000 rows.
 Checkpoint at 14000 rows.
 Checkpoint at 16000 rows.
 Checkpoint at 18000 rows.
+Checkpoint at 20000 rows.
 Checkpoint at 2000 rows.
 Checkpoint at 4000 rows.
 Checkpoint at 6000 rows.
@@ -25,10 +26,13 @@ Checkpoint at 14000 rows.
 Checkpoint at 16000 rows.
 Checkpoint at 18000 rows.
 Checkpoint at 20000 rows.
+Checkpoint at 22000 rows.
+Checkpoint at 24000 rows.
+Checkpoint at 26000 rows.
+Checkpoint at 28000 rows.
 Checkpoint at 2000 rows.
 Checkpoint at 4000 rows.
 Checkpoint at 6000 rows.
-Checkpoint at 8000 rows.
 Checkpoint at 2000 rows.
 Checkpoint at 4000 rows.
 Checkpoint at 6000 rows.
@@ -36,3 +40,6 @@ Checkpoint at 8000 rows.
 Checkpoint at 10000 rows.
 Checkpoint at 12000 rows.
 Checkpoint at 14000 rows.
+Checkpoint at 16000 rows.
+Checkpoint at 18000 rows.
+Checkpoint at 20000 rows.

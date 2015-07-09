@@ -3,6 +3,7 @@ package com.ttcgroup.tm1.dao;
 import com.applix.tm1.TM1Server;
 import com.sun.rowset.CachedRowSetImpl;
 import com.ttcgroup.tm1.dto.GroupInfo;
+import com.ttcgroup.tm1.dto.TM1ModelInfo;
 import com.ttcgroup.tm1.dto.UserInfo;
 import com.ttcgroup.tm1.utils.WriteLog;
 
@@ -33,4 +34,6 @@ public interface ITM1DAO {
 
     @WriteLog
     void ChangePassword(String userName, String password) throws Exception;
+
+    TM1ModelInfo ExportTM1Model() throws Exception;
 }

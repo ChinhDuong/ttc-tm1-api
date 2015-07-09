@@ -2,7 +2,7 @@
 <project name="Ant-Test">
     <include file="com.ttc.tm1.xml" />
     <property name="out.artifact" value="out/artifacts/com_ttc_tm1_api/"/>
-    <property name="ibm.tm1" value="C:/Program Files/ibm/cognos/tm1_64/webapps/pmpsvc/WEB-INF/lib" />
+    <property name="ibm.tm1" value="C:/DATA/import"/>
     <property name="test.tm1" value="C:/DATA/apache-tomcat-7.0.61/webapps/pmpsvc/WEB-INF/lib"/>
     <target name="post-build" depends="tm1javaapi.build.all.artifacts" description="post-build">
         <copy file="${out.artifact}\com.ttc.tm1.api.jar" todir="${ibm.tm1}" />

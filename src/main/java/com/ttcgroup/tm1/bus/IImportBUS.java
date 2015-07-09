@@ -32,4 +32,6 @@ public interface IImportBUS {
     void SetUserPermission(String fileName);
 
     void ChangePassword(String adminUser, String adminPassword, String userName, String newPassword, String adminHost) throws Exception;
+
+    void ExportTM1Model2xls();
 }

@@ -1,25 +1,27 @@
 
 C:\Users\Administrator\IdeaProjects\TM1JavaApi\exe>fbcopy.exe CE sysdba:masterkey@localhost:C:\DATA\SSP.GDB sysdba:masterkey@localhost:C:\DATA\TM1.GDB  0<tm1copy.def 
+Copying table: CURRENCY_LIST
+7 records copied.
 Copying table: OBJECT_GROUP
-781 records copied.
+795 records copied.
 Copying table: INSTOCKS
-744 records copied.
+862 records copied.
 Copying table: ACCOUNT_LIST
-521 records copied.
+522 records copied.
 Copying table: DOCUMENTS
-18939 records copied.
+21842 records copied.
 Copying table: FULL_ENTRYS
-21435 records copied.
+28429 records copied.
 Copying table: DEFAULT_OPTION_TABLE
 1 records copied.
 Copying table: OPTION_TABLE
 1 records copied.
 Copying table: OBJECT_LIST
-8629 records copied.
+7688 records copied.
 Copying table: OBJECT_BAL
-15898 records copied.
+20579 records copied.
 Copying table: ACCOUNT_BAL
-344 records copied.
+469 records copied.
 Copying table: RPT_KETQUAHDKD_A
 20 records copied.
 Copying table: RPT_KQHDKD_CONDITION
@@ -30,6 +32,6 @@ Copying table: RPT_BANGCANDOI
 124 records copied.
 Generator GEN_ERRORID                      -> GEN_ERRORID                      = 7.
 Generator GEN_LOGINCOUNT                   -> GEN_LOGINCOUNT                   = 177.
-Generator GEN_LOG_ID                       -> GEN_LOG_ID                       = 3536017.
+Generator GEN_LOG_ID                       -> GEN_LOG_ID                       = 3591352.
 Generator GEN_MESSAGEID                    -> GEN_MESSAGEID                    = 18.
 Generator GEN_TEMPLATEID                   -> GEN_TEMPLATEID                   = 61.

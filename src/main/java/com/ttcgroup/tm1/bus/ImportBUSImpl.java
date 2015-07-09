@@ -8,8 +8,10 @@ import com.sun.rowset.CachedRowSetImpl;
 import com.ttcgroup.tm1.dao.IFBDAO;
 import com.ttcgroup.tm1.dao.ITM1DAO;
 import com.ttcgroup.tm1.dto.GroupInfo;
+import com.ttcgroup.tm1.dto.TM1ModelInfo;
 import com.ttcgroup.tm1.dto.UserInfo;
 import com.ttcgroup.tm1.utils.Helper;
+import net.sf.jett.transform.ExcelTransformer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,9 +21,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -45,15 +45,13 @@ public class ImportBUSImpl implements IImportBUS {
         fbDAO.ExecuteSQLText("EXECUTE PROCEDURE TM1_CLEARTM1;");
     }
 
-
     public void CopyFBData() {
         Helper.ExecuteCMD("exe", "run_fbcopy.bat");
     }
 
-
     public void UpdateTableImport() {
         try {
-            String fileName = "C:/DATA/exe/tm1copy.def";
+            String fileName = "exe/tm1copy.def";
             List<String> lines;
             lines = Files.readAllLines(Paths.get(fileName), StandardCharsets.UTF_8);
             Iterator<String> iter = lines.iterator();
@@ -90,7 +88,6 @@ public class ImportBUSImpl implements IImportBUS {
         fbDAO.ExecuteSQLText("EXECUTE PROCEDURE TM1_CALALL('" + pYear + "')");
     }
 
-
     public void ImportTM1(String pYear) {
         String sqlText = "SELECT TABLENAME, CUBENAME, CLEARCONDITION FROM TM1_TABLEIMPORT WHERE CUBENAME != 'Z'";
         CachedRowSetImpl tblImport = fbDAO.ExecuteQueySQLText(sqlText);
@@ -102,17 +99,13 @@ public class ImportBUSImpl implements IImportBUS {
                 CachedRowSetImpl data = fbDAO.ExecuteQueySQLText(sqlText);
 
                 String condition = tblImport.getString("CLEARCONDITION");
+//                condition = condition + " & NAM: " + pYear;
+
                 if (!condition.isEmpty()) {
                     condition = condition + " & NAM: " + pYear;
+                } else {
+                    condition = " NAM: " + pYear;
                 }
-//                ResultSetMetaData meta = data.getMetaData();
-//                int numberOfCol = meta.getColumnCount();
-//                for (int i = 1; i <= numberOfCol; ++i) {
-//                    if (meta.getColumnName(i).equalsIgnoreCase("DM_PHIENBAN")) {
-//                        condition = condition + " & DM_PhienBan: ThucHien";
-//                        break;
-//                    }
-//                }
 
                 String[] params = {condition, cubeName};
                 tm1DAO.RunProcess("ClearActualData", params);
@@ -284,6 +277,24 @@ public class ImportBUSImpl implements IImportBUS {
                         + " is error on server " + serverName + ". " + client.getErrorMessage());
             }
 
+        }
+    }
+
+    public void ExportTM1Model2xls() {
+        try {
+            TM1ModelInfo model = tm1DAO.ExportTM1Model();
+            Map<String, Object> beans = new HashMap<String, Object>();
+            beans.put("user", model.getUser());
+            beans.put("group", model.getGroup());
+            beans.put("process", model.getProcess());
+            beans.put("dimension", model.getDimension());
+            beans.put("cube", model.getCube());
+            ExcelTransformer transformer = new ExcelTransformer();
+            transformer.transform("template.xlsx", "result.xlsx", beans);
+
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 }

@@ -1,3 +1,4 @@
 Manifest-Version: 1.0
-Main-Class: com.company.Main
+Class-Path: /lib
+Main-Class: com.ttcgroup.tm1.run.ImportTM1
 
